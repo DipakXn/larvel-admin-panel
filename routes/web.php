@@ -20,10 +20,7 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
 
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
@@ -40,19 +37,6 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('delete-multiple-product', [ProductController::class, 'deletemultipleProduct'])->name('delete_multiple_product');
 });
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Add routes accessible only to admin
-});
-
-Route::middleware(['auth', 'role:user'])->group(function () {
-    // Add routes accessible only to user
-});
-
-Route::middleware(['auth', 'role:guest'])->group(function () {
-    // Add routes accessible only to guest
-});
-
 
 Route::get('login/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [AuthController::class, 'handleGoogleCallback']);
