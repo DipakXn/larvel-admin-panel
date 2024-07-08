@@ -9,10 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    // Specify which fields are mass assignable
     protected $fillable = ['name'];
 
-    // Define the relationship with the Product model
     public function products()
     {
         return $this->hasMany(Product::class);

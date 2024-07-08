@@ -1,75 +1,80 @@
 @extends('layouts.main')
 @section('dashboard')
-<!-- partial -->
-<div class="main-panel">
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h4 class="font-weight-bold mb-0">Welcome to Dashboard!</h4>
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="row invoice-card-row">
+            @php
+            use App\Models\Product;
+            use App\Models\Category;
+
+            $totalProducts = Product::count();
+            $totalCategories = Category::count();
+            $recentProducts = Product::latest()->take(5)->get();
+            @endphp
+            <div class="col-xl-6 col-xxl-6 col-sm-6">
+            <a href="{{ route('products.index') }}">
+                <div class="card bg-info invoice-card">
+                    <div class="card-body d-flex">
+                        
+                        <div class="icon me-3">
+                        <i class="fa-brands fa-product-hunt"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-white invoice-num">{{ $totalProducts }}</h2>
+                            <span class="text-white fs-18">Total Products</span>
+                        </div>
+                       
                     </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-xl-6 col-xxl-6 col-sm-6">
+            <a href="{{ route('categories.index') }}">
+                <div class="card bg-secondary invoice-card">
+                    <div class="card-body d-flex">
                    
-                </div>
-            </div>
-        </div>
-        @php
-        use App\Models\Product;
-        use App\Models\Category;
-
-        $totalProducts = Product::count();
-        $totalCategories = Category::count();
-        $recentProducts = Product::latest()->take(5)->get();
-        @endphp
-
-        <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-title text-xl-left">Total Products</p>
-                        <div
-                            class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ $totalProducts }}</h3>
-                            <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                        <div class="icon me-3">
+                        <i class="fa-solid fa-list fw-bold"></i>
                         </div>
+                        <div>
+                            <h2 class="text-white invoice-num">{{ $totalCategories }}</h2>
+                            <span class="text-white fs-18">Total Categories</span>
+                        </div>
+                      
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-title text-xl-left">Total Categories</p>
-                        <div
-                            class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ $totalCategories }}</h3>
-                            <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
-
         <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+            <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Recently Added Products</h4>
+                    </div>
                     <div class="card-body">
-                        <p class="card-title mb-0">Recently Added Products</p>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-hover table-responsive-sm">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Image</th>
                                         <th>Price</th>
-                                        <th>Created At</th>
+                                        <th>Added At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($recentProducts as $product)
+                                @foreach($recentProducts as $product)
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{{ $product->price }}</td>
+                                        <td><img src="{{ asset('storage/') }}/{{ $product->image }}" width="50"></td>
+                                        <td><span class="badge badge-primary">{{ $product->price }}</span></td>
                                         <td>{{ $product->created_at }}</td>
                                     </tr>
                                     @endforeach
@@ -78,9 +83,14 @@
                         </div>
                     </div>
                 </div>
+                <!-- /# card -->
             </div>
+
         </div>
-
     </div>
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
 
-    @endsection
+@endsection

@@ -8,42 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Register</title>
     <base href="{{ asset('') }}" />
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('dashboard-assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('dashboard-assets/vendors/base/vendor.bundle.base.css') }}">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style.css') }}">
-    <!-- endinject -->
+
+    <link href="{{ asset('assets/vendor/nouislider/nouislider.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+
     <link rel="shortcut icon" href="{{ asset('dashboard-assets/images/favicon.png') }}" />
 
-    <style>
-    .form-control-lg {
-        padding: 0.94rem 1.94rem !important;
-    }
-    .error {
-        color:red;
-    }
-    </style>
-</head>
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
 
 <body>
-    <div class="container-scroller">
+    <div class="container-scroller bg-blue-auth">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="content-wrapper d-flex align-items-center auth px-0">
                 <div class="row w-100 mx-0">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo">
-                                <img src="{{ asset('dashboard-assets/images/logo.svg') }}" alt="logo">
+                                <h1><strong>Sign Up</strong></h1>
                             </div>
                             <h4>New here?</h4>
                             <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
 
                             @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible alert-alt fade show">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -53,19 +41,17 @@
                             @endif
 
                             <form method="POST" action="{{ route('register') }}" id="registrationForm" class="pt-3">
-                            @csrf
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control form-control-lg"
-                                        id="name" placeholder="Name" value="{{ old('name') }}"
-                                        required>
+                                    <input type="text" name="name" class="form-control form-control-md" id="name"
+                                        placeholder="Name" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control form-control-lg" id="email"
+                                    <input type="email" name="email" class="form-control form-control-md" id="email"
                                         placeholder="Email" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <select name="role" class="form-control form-control-lg"
-                                        id="role" required>
+                                    <select name="role" class="form-control form-control-md" id="role" required>
                                         <option disabled selected>Role</option>
                                         <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
                                         <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin
@@ -75,12 +61,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-lg"
+                                    <input type="password" name="password" class="form-control form-control-md"
                                         id="password" placeholder="Password" required>
                                 </div>
                                 <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                                     <input type="password" name="password_confirmation"
-                                        class="form-control form-control-lg" id="password_confirmation"
+                                        class="form-control form-control-md" id="password_confirmation"
                                         placeholder="Confirm Password" required>
                                     @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
@@ -97,10 +83,13 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn text-white">SIGN UP</button>
+                                    <button type="submit"
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn text-white">SIGN
+                                        UP</button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Already have an account? <a href="{{ route('login') }}" class="text-primary">Login</a>
+                                    Already have an account? <a href="{{ route('login') }}"
+                                        class="text-primary">Login</a>
                                 </div>
                             </form>
                         </div>
@@ -112,17 +101,32 @@
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('dashboard-assets/vendors/base/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- inject:js -->
-    <script src="{{ asset('dashboard-assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/js/template.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/js/todolist.js') }}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>  
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script>
+    var enableSupportButton = '1'
+    </script>
+    <script>
+    var asset_url = 'assets/'
+    </script>
+
+    <script src="{{ asset('assets/vendor/global/global.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}" type="text/javascript">
+    </script>
+    <script src="{{ asset('assets/vendor/chart-js/chart.bundle.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendor/nouislider/nouislider.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendor/wnumb/wNumb.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/dlabnav-init.js') }}" type="text/javascript"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 
     <script>
     $(document).ready(function() {

@@ -4,42 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('id', 'desc')->get();
-        return view('categories.index', compact('categories'));
+        $user = Auth::user();
+
+        $categories = Category::orderBy('id', 'asc')->get();
+
+        return view('categories.index', compact('categories','user'));
     }
 
-    public function create()
-    {
-        return view('categories.create');
-    }
-
-    public function store(Request $request)
+    public function ajaxStore(Request $request)
     {
         $request->validate(['name' => 'required']);
-        Category::create($request->all());
-        return redirect()->route('categories.index');
+
+        $category = Category::create($request->all());
+
+        return response()->json(['status' => true, 'message' => 'Category created successfully.', 'category' => $category]);
     }
 
-    public function edit(Category $category)
-    {
-        return view('categories.edit', compact('category'));
-    }
-
-    public function update(Request $request, Category $category)
+    public function ajaxUpdate(Request $request, Category $category)
     {
         $request->validate(['name' => 'required']);
         $category->update($request->all());
-        return redirect()->route('categories.index');
+
+        return response()->json(['status' => true, 'message' => 'Category updated successfully.', 'category' => $category]);
     }
 
-    public function destroy(Category $category)
+    public function ajaxDestroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index');
+
+        return response()->json(['status' => true, 'message' => 'Category deleted successfully.']);
     }
 }

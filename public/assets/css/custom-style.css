@@ -1,0 +1,184 @@
+
+
+/*--------------Login-Register-Forgot-password-Reset Password- CSS----------------*/
+
+.auth .lock-profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+}
+
+.auth .auth-form-light {
+  background: #f9f9f9;
+  box-shadow: 0 4px 8px 0 rgb(135 135 135), 0 6px 20px 0 rgb(139 139 139);
+}
+
+.auth .auth-form-light select {
+  color: #c9c8c8;
+}
+
+.auth .auth-form-light .input-group .form-control:focus, .auth .auth-form-light .input-group .form-control:active {
+  border-color: #c9ccd7;
+}
+
+.auth .auth-form-transparent {
+  background: transparent;
+}
+
+.auth .auth-form-transparent .form-control,
+.auth .auth-form-transparent .input-group-text {
+  border-color: #a3a4a5;
+}
+
+.auth .auth-form-transparent .form-control:focus, .auth .auth-form-transparent .form-control:active,
+.auth .auth-form-transparent .input-group-text:focus,
+.auth .auth-form-transparent .input-group-text:active {
+  border-color: #a3a4a5;
+}
+
+.auth .auth-form-transparent select {
+  outline-color: #a3a4a5;
+}
+
+.auth.auth-img-bg {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .auth.auth-img-bg .auth-form-transparent {
+    width: 55%;
+    margin: auto;
+  }
+}
+
+.auth .brand-logo {
+  margin-bottom: 2rem;
+}
+
+.auth .brand-logo img {
+  width: 150px;
+}
+
+.auth form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.auth form .form-group label {
+  font-size: .8125rem;
+}
+
+.auth form .form-group .form-control {
+  background: transparent;
+  border-radius: 0;
+  font-size: .9375rem;
+}
+
+.auth form .auth-form-btn {
+  padding: 1rem 3rem;
+  line-height: 1.5;
+}
+
+.auth form .auth-link {
+  font-size: 0.875rem;
+}
+
+.auth form .auth-link:hover {
+  color: initial;
+}
+
+.page-body-wrapper {
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 70px;
+}
+
+.page-body-wrapper.full-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 0;
+}
+
+.main-panel {
+  transition: width 0.25s ease, margin 0.25s ease;
+  width: calc(100% - 237px);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .main-panel {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.content-wrapper {
+  /* background: #dddce1; */
+  padding: 1.5rem 2.5rem;
+  width: 100%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+
+@media (max-width: 767px) {
+  .content-wrapper {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+
+.btn-google {
+  background: #dc4a38;
+  color: #ffffff;
+  border-color: #f0f8ff0f !important;
+}
+
+.btn-google:hover, .btn-google:focus {
+  background: #bf3322;
+  color: #ffffff;
+  border-color: #f0f8ff0f !important;
+}
+
+.btn-google.btn-social-icon-text {
+  padding: 0 1.5rem 0 0;
+  background: #e47163;
+}
+
+.btn-google.btn-social-icon-text i {
+  background: #dc4a38;
+  padding: .75rem;
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+.btn-outline-google {
+  border: 1px solid #dc4a38;
+  color: #dc4a38;
+}
+
+.btn-outline-google:hover {
+  background: #dc4a38;
+  color: #ffffff;
+}
+
+#laravel-notify {
+  position: absolute;
+  z-index: 999999;
+}
+
+.bg-blue-auth{
+  background: linear-gradient(180deg, rgb(13 0 181 / 68%) 0%, rgb(87 87 213 / 58%) 24%, rgb(0 212 255 / 42%) 100%);
+
+}
+
+table.dataTable thead th{
+  padding:10px;
+}
